@@ -1,3 +1,6 @@
+#load required libraries
+library(caret)
+
 
 #read in training data
  exerciseData = read.csv("pml-training.csv", na.string=c("NA",""))
