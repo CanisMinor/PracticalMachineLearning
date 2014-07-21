@@ -1,6 +1,6 @@
 #load required libraries
 library(caret)
-
+library(randomForest)
 
 #read in training data
  exerciseData = read.csv("pml-training.csv", na.string=c("NA",""))
