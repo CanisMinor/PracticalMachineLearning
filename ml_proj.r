@@ -26,6 +26,3 @@ library(e1071)
 
 #evaluate predictions on the test dataset
  preds = predict(modFit, cleanTest)
- 
-#output answer to screen
-preds
