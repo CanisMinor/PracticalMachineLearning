@@ -1,9 +1,10 @@
 #load required libraries
 library(caret)
 library(randomForest)
+library(e1071)
 
 #read in training data
- exerciseData = read.csv("pml-training.csv", na.string=c("NA",""))
+ exerciseData <- read.csv("pml-training.csv", na.strings=c("NA",""))
 
 #remove data columns that where all entries are empty or NA
  NAs <- apply(exerciseData,2,function(x) {sum(is.na(x))})
