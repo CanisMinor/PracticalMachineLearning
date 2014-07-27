@@ -1,7 +1,7 @@
-#load required libraries
 library(caret)
 library(randomForest)
 library(e1071)
+
 
 #read in training data
  exerciseData <- read.csv("pml-training.csv", na.strings=c("NA",""))
