@@ -6,6 +6,7 @@ library(e1071)
  exerciseData <- read.csv("pml-training.csv", na.strings=c("NA",""))
 
 
+
 #remove data columns that where all entries are empty or NA
  NAs <- apply(exerciseData,2,function(x) {sum(is.na(x))})
  cleanData <- exerciseData[,which(NAs==0)]
