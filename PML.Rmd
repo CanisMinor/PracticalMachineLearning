@@ -41,7 +41,7 @@ In order to perform cross-validation, the script could be edited as follows.  We
  testData <- exerciseData[-inFold,]
  exerciseData <- exerciseData[inFold,]
 ```
-and then remove lines 21-22 from the script, i.e., do not overwrite testData with the data in "pml-testing.csv" as in the original script.  By varying the p-parameter and performing the calculation of preds as per the script, and comparing these to the actual values of the 'classe' variable I estimated a test error of approximately 96 %.
+and then remove lines 21-22 from the script, i.e., do not overwrite testData with the data in "pml-testing.csv" as in the original script.  By varying the p-parameter and performing the calculation of preds as per the script, and comparing these to the actual values of the 'classe' variable I estimated a test error of approximately 100-96 = 4 %.
 
 I picked the random forest method as it gives a relatively high accuracy on the training set (96% depending on the split into training/test) and also provided 100 % accuracy on the test data.  As the training data set is huge in comparison to the test data set, one could expect the test data error to be low, but that it is lower than the actual training error is surprising and probably fluke.
 
