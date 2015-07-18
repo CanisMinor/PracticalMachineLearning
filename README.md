@@ -1,5 +1,5 @@
 # PracticalMachineLearning
-Course project for the Practical Machine Learning Coursera course
+This repository relates to my submission for a course project for the Practical Machine Learning Coursera course.  This readme is written with the requirements of the course submission in mind.
 
 This project was written for submission as a course project for the Practical Machine Learning course on Coursera. The aim is to apply machine learning on accelerometer data in order to decide how a particular weight-lifting exercise was performed. The performance is classified in terms of five possible labels: A, B, C, D and E.
 
@@ -10,26 +10,27 @@ I used the caret and randomForest packages in R to run a random forest on the tr
 In order to speed up the training, I removed all columns of the training data where entries were either "NA" or empty strings. I also removed columns that contained information that should not be treated as predictors, such as, e.g., timestamps and user names.
 
 remove data columns that where all entries are empty or NA
-'''
+```
  NAs <- apply(exerciseData,2,function(x) {sum(is.na(x))})
  cleanData <- exerciseData[,which(NAs==0)]
-'''
+```
 
 remove data that is irrelevant, e.g., time stamps and user name, from training data
-'''
+```
  irrelevantIndex = grep("timestamp|X|user_name|new_window", names(cleanData))
  cleanData <- cleanData[,-irrelevantIndex]
-'''
+```
+
 Once the training and test datasets had been processed in this way, I trained a random forest on the training data,
-'''
+```
  modFit <- train(classe ~ ., method = "rf", data = cleanData)
-'''
+```
+
 Finally, I evaluated the predictions of the trained random forest model on the test data,
 
-evaluate predictions on the test dataset
-'''
+```
  preds = predict(modFit, cleanTest)
-'''
+```
 
 ## Notes on Errors
 
