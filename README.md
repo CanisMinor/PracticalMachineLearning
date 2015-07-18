@@ -3,28 +3,35 @@ Course project for the Practical Machine Learning Coursera course
 
 This project was written for submission as a course project for the Practical Machine Learning course on Coursera. The aim is to apply machine learning on accelerometer data in order to decide how a particular weight-lifting exercise was performed. The performance is classified in terms of five possible labels: A, B, C, D and E.
 
-#Implementation
+##Implementation
 
 I used the caret and randomForest packages in R to run a random forest on the training data from the Human Activity Recognition Project of Groupware@LES (see Acknowledgements). In particular, I performed cross-validation by the use of the createDataPartition command of caret.
 
 In order to speed up the training, I removed all columns of the training data where entries were either "NA" or empty strings. I also removed columns that contained information that should not be treated as predictors, such as, e.g., timestamps and user names.
 
-#remove data columns that where all entries are empty or NA
+remove data columns that where all entries are empty or NA
+'''
  NAs <- apply(exerciseData,2,function(x) {sum(is.na(x))})
  cleanData <- exerciseData[,which(NAs==0)]
+'''
 
-#remove data that is irrelevant, e.g., time stamps and user name, from training data
+remove data that is irrelevant, e.g., time stamps and user name, from training data
+'''
  irrelevantIndex = grep("timestamp|X|user_name|new_window", names(cleanData))
  cleanData <- cleanData[,-irrelevantIndex]
+'''
 Once the training and test datasets had been processed in this way, I trained a random forest on the training data,
-
+'''
  modFit <- train(classe ~ ., method = "rf", data = cleanData)
+'''
 Finally, I evaluated the predictions of the trained random forest model on the test data,
 
-#evaluate predictions on the test dataset
+evaluate predictions on the test dataset
+'''
  preds = predict(modFit, cleanTest)
+'''
 
-#Notes on Errors
+## Notes on Errors
 
 In order to perform cross-validation, the script could be edited as follows. We want to split the data in "pml-training.csv" into training and testing data in different ways. This can be done by inserting the following commands on line 7,
 
@@ -35,7 +42,7 @@ and then remove lines 21-22 from the script, i.e., do not overwrite testData wit
 
 I picked the random forest method as it gives a relatively high accuracy on the training set (96% depending on the split into training/test) and also provided 100 % accuracy on the test data. As the training data set is huge in comparison to the test data set, one could expect the test data error to be low, but that it is lower than the actual training error is surprising and probably fluke.
 
-#Acknowledgements
+## Acknowledgements
 
 The test and training data were provided by Groupware@LES, see
 
