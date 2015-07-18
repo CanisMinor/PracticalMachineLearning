@@ -9,14 +9,14 @@ I used the caret and randomForest packages in R to run a random forest on the tr
 
 In order to speed up the training, I removed all columns of the training data where entries were either "NA" or empty strings. I also removed columns that contained information that should not be treated as predictors, such as, e.g., timestamps and user names.
 
-remove data columns that where all entries are empty or NA
 ```
+#remove data columns that where all entries are empty or NA
  NAs <- apply(exerciseData,2,function(x) {sum(is.na(x))})
  cleanData <- exerciseData[,which(NAs==0)]
 ```
 
-remove data that is irrelevant, e.g., time stamps and user name, from training data
 ```
+#remove data that is irrelevant, e.g., time stamps and user name, from training data
  irrelevantIndex = grep("timestamp|X|user_name|new_window", names(cleanData))
  cleanData <- cleanData[,-irrelevantIndex]
 ```
